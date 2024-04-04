@@ -16,6 +16,16 @@ def data_entry(value):
     display.insert(index=len(display.get()), string=str(value))
 
 
+def clear():
+    display.delete(0, len(display.get()))
+
+
+def calculation():
+    clear()
+    result = str(eval(display.get()))
+    display.insert(index=0, string=str(result))
+
+
 button_0 = Button(frame, text=" 0 ", command=lambda: data_entry(0))
 button_0.grid(column=1, row=4)
 
@@ -61,14 +71,7 @@ minus.grid(column=3, row=4)
 point = Button(frame, text=" . ", command=lambda: data_entry("."))
 point.grid(column=0, row=4)
 
-equals = Button(frame, text=" = ")
+equals = Button(frame, text=" = ", command=calculation)
 equals.grid(column=2, row=4)
-
-
-def typed_data(*args):
-    print(display.get())
-
-
-text.trace_add("write", typed_data)
 
 root.mainloop()
